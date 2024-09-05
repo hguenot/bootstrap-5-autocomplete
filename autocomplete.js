@@ -27,6 +27,7 @@ class Autocomplete {
 
     insertAfter(dropdown, field);
 
+    this.dropdownEl = dropdown;
     this.dropdown = new bootstrap.Dropdown(field, this.options.dropdownOptions);
 
     field.addEventListener('click', (e) => {
@@ -99,7 +100,7 @@ class Autocomplete {
       return 0;
     }
 
-    const items = this.field.nextSibling;
+    const items = this.dropdownEl;
     items.innerHTML = '';
 
     const keys = Object.keys(this.options.data);
@@ -120,7 +121,7 @@ class Autocomplete {
       }
     }
 
-    this.field.nextSibling.querySelectorAll('.dropdown-item').forEach((item) => {
+    this.dropdownEl.querySelectorAll('.dropdown-item').forEach((item) => {
       item.addEventListener('click', (e) => {
         let dataLabel = e.currentTarget.getAttribute('data-label');
         let dataValue = e.currentTarget.getAttribute('data-value');
